@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="app" class="container">
+        <h2>{{ title }}</h2>
+        <ul style="list-style-type: none;">
+            <li v-for="item in items" v-bind:class="{ 'removed': item.checked }">
+                <div class="checkbox">
+                    <label for="">
+                        <input type="checkbox" v-model="item.checked">
+                    </label>
+                    {{ item.text }}
+                </div>
+            </li>
+        </ul>
+
+        <div class="input-group">
+            <input v-model="newItem" type="text" @keyup.enter="addItem" placeholder="add item" class="form-control">
+            <span class="input-group-btn">
+                <button @click="addItem" class="btn btn-default">Add Item</button>
+            </span>
+        </div>
+
+        <div class="footer">
+            <hr>
+            <em>Change the title of your header here</em>
+            <input v-model="title"/>
+        </div>
+    </div>
+
+<script src="https://unpkg.com/vue"></script>
+<script>
+    var data = {
+        items: [
+            {text: 'Bananas', checked: false},
+            {text: 'Mangos', checked: false},
+            {text: 'Bread', checked: false},
+            {text: 'Milk', checked: false}
+        ],
+        title: 'My Awesome App',
+        newItem: ''
+    }
+
+    new Vue({
+        el: "#app",
+
+        data: data,
+
+        methods: {
+            addItem() {
+                var text
+                text = this.newItem.trim()
+                if( text ) {
+                    this.items.push({ text: text, checked: false })
+                    this.newItem=''
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
