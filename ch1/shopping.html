@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        .removed label {
+            text-decoration: line-through;
+        }
+    </style>
 </head>
 <body>
     <div id="app" class="container">
@@ -13,10 +18,9 @@
         <ul style="list-style-type: none;">
             <li v-for="item in items" v-bind:class="{ 'removed': item.checked }">
                 <div class="checkbox">
-                    <label for="">
-                        <input type="checkbox" v-model="item.checked">
+                    <label>
+                        <input type="checkbox" v-model="item.checked"> {{ item.text }}
                     </label>
-                    {{ item.text }}
                 </div>
             </li>
         </ul>
