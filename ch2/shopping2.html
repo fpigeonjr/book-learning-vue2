@@ -17,6 +17,8 @@
             <em>Change your title of your shopping list</em>
             <change-title-component></change-title-component>
         </div>
+        <h2>Custom Binding</h2>
+        <div v-square="item"></div>
     </div>
 
 
@@ -28,8 +30,15 @@
                 {text: 'Apples', checked: false}
             ],
             title: 'My Shopping List',
-            newItem: ''
+            newItem: '',
+            item: 2
         }
+
+        // Custom Directive
+        Vue.directive('square', function(el, binding) {
+            el.innerHTML = Math.pow(binding.value, 2)
+        })
+
 
         // Declare Component
         var ItemsComponent = Vue.extend({
