@@ -1,0 +1,10 @@
+{
+  "name": "dev-build",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Frank Pigeon (http://frankpigeon.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "vue": "^2.2.2"
+  }
+}
