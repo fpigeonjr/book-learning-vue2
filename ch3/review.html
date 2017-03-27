@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <template id="form">
+        <div>
+            <label for="name">What's Your Name?</label>
+            <input v-bind:value="value" type="text" id="name" v-on:input="onInput">
+        </div>
+    </template>
+
+    <template id="hello">
+        <h1>{{msg}} {{user}}</h1>
+    </template>
+
+    <template id="greetings">
+        <div>
+            <form-component :user="user" v-model="user"></form-component>
+            <hello-component :user="user"></hello-component>
+        </div>
+    </template>
+
+    <div id="app">
+        <greetings-component></greetings-component>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        Vue.component('greetings-component', {
+            template: '#greetings',
+            data: function() {
+                return {
+                    user: 'hero'
+                }
+            }
+        })
+
+        Vue.component('form-component', {
+            template: '#form',
+            props: ['value'],
+            methods: {
+                onInput(event) {
+                    this.$emit('input', event.target.value)
+                }
+            }
+        })
+
+        Vue.component('hello-component', {
+            template: '#hello',
+            data: function() {
+                return {
+                    msg: 'Hello'
+                }
+            },
+            props: ['user']
+        })
+
+        new Vue({
+            el: '#app',
+            data: {
+                user: 'hero'
+            }
+        })
+    </script>
+</body>
+</html>
